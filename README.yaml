@@ -94,3 +94,29 @@ usage: |-
     }
   }
   ```
+
+    ### Activity Log Alert
+  ```hcl
+  module "alerts" {
+  depends_on = [data.azurerm_monitor_action_group.example, ]
+  source     = "clouddrove/monitor-alerts/azure"
+
+  name        = "app"
+  environment = "test"
+  label_order = ["name", "environment"]
+
+  activity_log_alert = {
+    "test1" = {
+      alertname      = "nsg-write"
+      alertrg        = module.resource_group.resource_group_name
+      alertscopes    = [module.resource_group.resource_group_id]
+      description    = "Administrative alerts for nsg"
+      operation_name = "Microsoft.Network/networkSecurityGroups/write"
+      actionGroupID  = data.azurerm_monitor_action_group.example.id
+      category       = "Administrative"
+    }
+  }
+  }
+
+
+  ```

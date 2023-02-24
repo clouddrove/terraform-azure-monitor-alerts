@@ -53,3 +53,22 @@ resource "azurerm_monitor_metric_alert" "alert" {
   }
   tags = module.labels.tags
 }
+
+resource "azurerm_monitor_activity_log_alert" "main" {
+  for_each            = var.activity_log_alert
+  name                = each.value.alertname
+  resource_group_name = each.value.alertrg
+  scopes              = each.value.alertscopes
+  description         = each.value.description
+
+  criteria {
+    operation_name = each.value.operation_name
+    category       = each.value.category
+    resource_group = each.value.alertrg
+  }
+
+  action {
+    action_group_id = each.value.actionGroupID
+  }
+  tags = module.labels.tags
+}

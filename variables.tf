@@ -72,3 +72,17 @@ variable "metricAlerts" {
   }))
   default = {}
 }
+
+variable "activity_log_alert" {
+  type = map(object({
+    alertname      = string
+    alertrg        = string
+    alertscopes    = list(string)
+    description    = string
+    operation_name = string
+    actionGroupID  = string
+    category       = string
+  }))
+
+  default = {}
+}
