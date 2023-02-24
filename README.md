@@ -132,6 +132,32 @@ Here are some examples of how you can use this module in your inventory structur
 }
 ```
 
+  ### Activity Log Alert
+```hcl
+module "alerts" {
+depends_on = [data.azurerm_monitor_action_group.example, ]
+source     = "clouddrove/monitor-alerts/azure"
+
+name        = "app"
+environment = "test"
+label_order = ["name", "environment"]
+
+activity_log_alert = {
+  "test1" = {
+    alertname      = "nsg-write"
+    alertrg        = module.resource_group.resource_group_name
+    alertscopes    = [module.resource_group.resource_group_id]
+    description    = "Administrative alerts for nsg"
+    operation_name = "Microsoft.Network/networkSecurityGroups/write"
+    actionGroupID  = data.azurerm_monitor_action_group.example.id
+    category       = "Administrative"
+  }
+}
+}
+
+
+```
+
 
 
 
@@ -142,6 +168,7 @@ Here are some examples of how you can use this module in your inventory structur
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | actionGroups | n/a | <pre>map(object({<br>    actionGroupName          = string<br>    actionGroupShortName     = string<br>    actionGroupRGName        = string<br>    actionGroupEnabled       = string<br>    actionGroupEmailReceiver = list(map(string))<br>  }))</pre> | `{}` | no |
+| activity\_log\_alert | n/a | <pre>map(object({<br>    alertname      = string<br>    alertrg        = string<br>    alertscopes    = list(string)<br>    description    = string<br>    operation_name = string<br>    actionGroupID  = string<br>    category       = string<br>  }))</pre> | `{}` | no |
 | application | Application (e.g. `cd` or `clouddrove`). | `string` | `""` | no |
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
 | label\_order | Label order, e.g. `name`,`application`. | `list(any)` | `[]` | no |
