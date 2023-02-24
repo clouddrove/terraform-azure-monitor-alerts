@@ -1,0 +1,96 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name : Terraform AZURE MONITOR ALERTS
+
+# License of this project
+license: "APACHE"
+
+# Canonical GitHub repo
+github_repo: clouddrove/terraform-azure-monitor-alerts
+
+# Badges to display
+badges:
+  - name: "Terraform"
+    image: "https://img.shields.io/badge/Terraform-v1.1.7-green"
+    url: "https://www.terraform.io"
+  - name: "Licence"
+    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
+    url: "LICENSE.md"
+
+#  description of this project
+description: |-
+  Terraform module to create monitor alerts resource on AZURE.
+# extra content
+include:
+  - "terraform.md"
+
+# How to use this project
+usage: |-
+  Here are some examples of how you can use this module in your inventory structure:
+  ### action group
+  ```hcl
+    module "monitor-alerts" {
+    source                         = "clouddrove/monitor-alerts/azure"
+    version                        = "1.0.0"
+    name                           = "app"
+    environment                    = "test"
+    label_order                    = ["name", "environment"]
+
+    actionGroups = {
+      "group1" = {
+        actionGroupName      = "AlertEscalationGroup"
+        actionGroupShortName = "alertesc"
+        actionGroupRGName    = module.resource_group.resource_group_name
+        actionGroupEnabled   = "true"
+        actionGroupEmailReceiver = [
+          {
+            name                    = "example"
+            email_address           = "example@gmail.com"
+            use_common_alert_schema = "true"
+          },
+          {
+            name                    = "test"
+            email_address           = "test@gmail.com"
+            use_common_alert_schema = "true"
+          }
+        ]
+      }
+    }
+  }
+  ```
+  ### metric alert
+  ```hcl
+    module "monitor-alerts" {
+    source                         = "clouddrove/monitor-alerts/azure"
+    version                        = "1.0.0"
+    name                           = "app"
+    environment                    = "test"
+    label_order                    = ["name", "environment"]
+
+    actionGroups = {
+      "group1" = {
+        actionGroupName      = "AlertEscalationGroup"
+        actionGroupShortName = "alertesc"
+        actionGroupRGName    = module.resource_group.resource_group_name
+        actionGroupEnabled   = "true"
+        actionGroupEmailReceiver = [
+          {
+            name                    = "test"
+            email_address           = "mahesh.yadav@clouddrove.com"
+            use_common_alert_schema = "true"
+          },
+          {
+            name                    = "test"
+            email_address           = "test@gmail.com"
+            use_common_alert_schema = "true"
+          }
+        ]
+      }
+    }
+  }
+  ```
