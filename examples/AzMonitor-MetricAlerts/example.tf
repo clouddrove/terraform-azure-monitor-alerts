@@ -1,6 +1,7 @@
 provider "azurerm" {
   features {
   }
+  subscription_id = "000000-11111-1223-XXX-XXXXXXXXXXXX"
 }
 
 module "resource_group" {
@@ -49,7 +50,7 @@ data "azurerm_monitor_action_group" "example" {
 
 data "azurerm_kubernetes_cluster" "example" {
   depends_on          = [module.resource_group]
-  name                = "testing"
+  name                = "mycluster"
   resource_group_name = module.resource_group.resource_group_name
 }
 
@@ -99,6 +100,5 @@ module "azmonitor-metric-alerts" {
       alertTargetResourceLoc     = data.azurerm_kubernetes_cluster.example.location
       actionGroupID              = data.azurerm_monitor_action_group.example.id
     }
-
   }
 }

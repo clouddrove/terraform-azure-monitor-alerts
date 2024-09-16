@@ -1,5 +1,6 @@
 provider "azurerm" {
   features {}
+  subscription_id = "000000-11111-1223-XXX-XXXXXXXXXXXX"
 }
 
 module "resource_group" {
@@ -26,7 +27,7 @@ module "azmonitor-action-group" {
       actionGroupEmailReceiver = [
         {
           name                    = "test"
-          email_address           = "archit.chopra@clouddrove.com"
+          email_address           = "myemail@example.com"
           use_common_alert_schema = "false"
         }
       ]

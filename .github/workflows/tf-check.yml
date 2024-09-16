@@ -1,0 +1,19 @@
+name: tf-checks
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  example-action_group:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
+    with:
+      working_directory: './examples/AzMonitor-ActionGroups'
+  example-activity_log_alert:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
+    with:
+      working_directory: './examples/Azmonitor-ActivityLogAlerts'
+  example-metric_alerts:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
+    with:
+      working_directory: './examples/Azmonitor-ActivityLogAlerts'

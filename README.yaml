@@ -4,8 +4,9 @@
 # Run `make readme` to rebuild the `README.md`
 #
 
+
 # Name of this project
-name : Terraform AZURE MONITOR ALERTS
+name: Terraform AZURE MONITOR ALERTS
 
 # License of this project
 license: "APACHE"
@@ -15,21 +16,25 @@ github_repo: clouddrove/terraform-azure-monitor-alerts
 
 # Badges to display
 badges:
-  - name: "Terraform"
-    image: "https://img.shields.io/badge/Terraform-v1.1.7-green"
-    url: "https://www.terraform.io"
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/clouddrove/terraform-azure-monitor-alerts.svg"
+    url: "https://github.com/clouddrove/terraform-azure-monitor-alerts/releases/latest"
+  - name: "tfsec"
+    image: "https://github.com/clouddrove/terraform-azure-monitor-alerts/actions/workflows/tfsec.yml/badge.svg"
+    url: "https://github.com/clouddrove/terraform-azure-monitor-alerts/actions/workflows/tfsec.yml"
   - name: "Licence"
     image: "https://img.shields.io/badge/License-APACHE-blue.svg"
     url: "LICENSE.md"
 
 #  description of this project
 description: |-
-  Terraform module to create monitor alerts resource on AZURE.
+  Terraform module to create subnet resource on AZURE.
 # extra content
 include:
   - "terraform.md"
 
 # How to use this project
+# yamllint disable rule:line-length
 usage: |-
   Here are some examples of how you can use this module in your inventory structure:
   ### action group
@@ -50,12 +55,12 @@ usage: |-
         actionGroupEmailReceiver = [
           {
             name                    = "example"
-            email_address           = "example@gmail.com"
+            email_address           = "myemail@example.com"
             use_common_alert_schema = "true"
           },
           {
             name                    = "test"
-            email_address           = "test@gmail.com"
+            email_address           = "myemail@example.com"
             use_common_alert_schema = "true"
           }
         ]
@@ -81,7 +86,7 @@ usage: |-
         actionGroupEmailReceiver = [
           {
             name                    = "test"
-            email_address           = "mahesh.yadav@clouddrove.com"
+            email_address           = "myemail@example.com"
             use_common_alert_schema = "true"
           },
           {
