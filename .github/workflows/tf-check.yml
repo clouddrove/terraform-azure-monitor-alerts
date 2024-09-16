@@ -12,7 +12,7 @@ jobs:
   example-activity_log_alert:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
-      working_directory: './examples/Azmonitor-ActivityLogAlerts'
+      working_directory: './examples/AzMonitor-ActivityLogAlerts'
   example-metric_alerts:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
