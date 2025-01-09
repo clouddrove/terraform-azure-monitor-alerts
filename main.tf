@@ -58,6 +58,7 @@ resource "azurerm_monitor_activity_log_alert" "main" {
   for_each            = var.activity_log_alert
   name                = each.value.alertname
   resource_group_name = each.value.alertrg
+  location            = lookup(each.value, "location", "global")
   scopes              = each.value.alertscopes
   description         = each.value.description
 
